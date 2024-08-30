@@ -12,6 +12,7 @@ struct RecipeDetailView: View {
     var recipe: Recipe
     @State private var recipeDetails: RecipeDetails?
     @State private var isLoading = true
+    @EnvironmentObject var pastRecipesManager: PastRecipesManager
     
     var body: some View {
         VStack {
@@ -21,9 +22,19 @@ struct RecipeDetailView: View {
             } else if let details = recipeDetails {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
-                        Text(recipe.title)
-                            .font(.largeTitle)
-                            .padding(.bottom, 10)
+                        HStack {
+                            Text(recipe.title)
+                                .font(.largeTitle)
+                                .padding(.bottom, 10)
+                            Spacer()
+                            Button(action: {
+                                pastRecipesManager.addRecipe(recipe)
+                            }) {
+                                Image(systemName: "bookmark.fill")
+                                    .foregroundColor(.pink)
+                                    .padding()
+                            }
+                        }
 
                         if let imageUrl = recipe.image, let url = URL(string: imageUrl) {
                             AsyncImage(url: url) { image in

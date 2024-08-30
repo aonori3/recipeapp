@@ -17,6 +17,7 @@
 		D8EDBD4C2C8176CB00BCCA06 /* PastRecipesVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDBD4B2C8176CB00BCCA06 /* PastRecipesVIew.swift */; };
 		D8EDBD4E2C81840200BCCA06 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDBD4D2C81840200BCCA06 /* RecipeService.swift */; };
 		D8EDBD502C818A3E00BCCA06 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDBD4F2C818A3E00BCCA06 /* RecipeDetailView.swift */; };
+		D8EDBD522C81939700BCCA06 /* PastRecipesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDBD512C81939700BCCA06 /* PastRecipesManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		D8EDBD4B2C8176CB00BCCA06 /* PastRecipesVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastRecipesVIew.swift; sourceTree = "<group>"; };
 		D8EDBD4D2C81840200BCCA06 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		D8EDBD4F2C818A3E00BCCA06 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		D8EDBD512C81939700BCCA06 /* PastRecipesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastRecipesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				D8EDBD492C81768B00BCCA06 /* RecipeGeneratorView.swift */,
 				D8EDBD4F2C818A3E00BCCA06 /* RecipeDetailView.swift */,
 				D8EDBD4B2C8176CB00BCCA06 /* PastRecipesVIew.swift */,
+				D8EDBD512C81939700BCCA06 /* PastRecipesManager.swift */,
 				D8EDBD3B2C816EBF00BCCA06 /* Assets.xcassets */,
 				D8EDBD3D2C816EBF00BCCA06 /* Preview Content */,
 			);
@@ -157,6 +160,7 @@
 			files = (
 				D8EDBD462C81764700BCCA06 /* HomeView.swift in Sources */,
 				D8EDBD3A2C816EBC00BCCA06 /* ContentView.swift in Sources */,
+				D8EDBD522C81939700BCCA06 /* PastRecipesManager.swift in Sources */,
 				D8EDBD4E2C81840200BCCA06 /* RecipeService.swift in Sources */,
 				D8EDBD382C816EBC00BCCA06 /* GrapefruitCrunchApp.swift in Sources */,
 				D8EDBD4A2C81768B00BCCA06 /* RecipeGeneratorView.swift in Sources */,

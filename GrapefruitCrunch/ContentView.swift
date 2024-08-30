@@ -7,18 +7,14 @@
 
 import SwiftUI
 
-struct RecipeApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
-}
 
 struct ContentView: View {
+    @StateObject var pastRecipesManager = PastRecipesManager()
+
     var body: some View {
         NavigationView {
             HomeView()
+                .environmentObject(pastRecipesManager)
                 .navigationBarHidden(true)
         }
     }

@@ -8,10 +8,23 @@
 import Foundation
 import SwiftUI
 
+
 struct PastRecipesView: View {
+    @EnvironmentObject var pastRecipesManager: PastRecipesManager
+    
     var body: some View {
-        Text("Your saved recipes will appear here!")
-            .font(.title)
-            .foregroundColor(.pink)
+        VStack {
+            Text("Past Recipes")
+                .font(.largeTitle)
+                .padding()
+            
+            List {
+                ForEach(pastRecipesManager.savedRecipes) { recipe in
+                    NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                        Text(recipe.title)
+                    }
+                }
+            }
+        }
     }
 }

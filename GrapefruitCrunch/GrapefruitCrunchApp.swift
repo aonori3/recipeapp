@@ -8,10 +8,11 @@
 import SwiftUI
 
 @main
-struct GrapefruitCrunchApp: App {
+struct RecipeApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(PastRecipesManager())
         }
     }
 }

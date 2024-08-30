@@ -11,7 +11,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             Spacer()
-            Image(systemName: "takeoutbag.and.cup.and.straw.fill")
+            Image(systemName: "fork.knife.circle.fill")
                 .resizable()
                 .frame(width: 100, height: 100)
                 .foregroundColor(.pink)
@@ -46,7 +46,6 @@ struct HomeView: View {
 
             Spacer()
 
-            // Bottom Navigation Icons
             HStack {
                 Image(systemName: "house.fill")
                 Spacer()
