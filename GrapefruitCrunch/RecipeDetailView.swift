@@ -10,10 +10,11 @@ import SwiftUI
 
 struct RecipeDetailView: View {
     var recipe: Recipe
+    @State private var isBookmarked = false  // State to track if the recipe is bookmarked
     @State private var recipeDetails: RecipeDetails?
     @State private var isLoading = true
     @EnvironmentObject var pastRecipesManager: PastRecipesManager
-    
+
     var body: some View {
         VStack {
             if isLoading {
@@ -28,9 +29,14 @@ struct RecipeDetailView: View {
                                 .padding(.bottom, 10)
                             Spacer()
                             Button(action: {
-                                pastRecipesManager.addRecipe(recipe)
+                                isBookmarked.toggle()  // Toggle bookmark status
+                                if isBookmarked {
+                                    pastRecipesManager.addRecipe(recipe)
+                                } else {
+                                    pastRecipesManager.removeRecipe(recipe)
+                                }
                             }) {
-                                Image(systemName: "bookmark.fill")
+                                Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")  // Change icon based on state
                                     .foregroundColor(.pink)
                                     .padding()
                             }

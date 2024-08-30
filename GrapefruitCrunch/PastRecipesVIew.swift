@@ -14,7 +14,7 @@ struct PastRecipesView: View {
     
     var body: some View {
         VStack {
-            Text("Past Recipes")
+            Text("Saved Recipes")
                 .font(.largeTitle)
                 .padding()
             

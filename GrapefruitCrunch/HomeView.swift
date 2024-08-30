@@ -34,7 +34,7 @@ struct HomeView: View {
                 .padding()
 
                 NavigationLink(destination: PastRecipesView()) {
-                    Text("Past recipes")
+                    Text("Saved recipes")
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.pink)
