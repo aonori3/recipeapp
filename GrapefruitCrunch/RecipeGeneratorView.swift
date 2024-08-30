@@ -10,14 +10,12 @@ import SwiftUI
 
 struct RecipeGeneratorView: View {
     var ingredients: [String]
-    
+    @State private var recipes: [Recipe] = []
+    @State private var isLoading = true
+
     var body: some View {
         VStack {
             HStack {
-                NavigationLink(destination: NewRecipeView()) {
-                    Text("Back")
-                        .foregroundColor(.purple)
-                }
                 Spacer()
             }
             .padding()
@@ -26,18 +24,22 @@ struct RecipeGeneratorView: View {
                 .font(.title)
                 .padding(.bottom, 10)
 
-            ScrollView {
-                VStack(spacing: 20) {
-                    // This is just a placeholder for recipe cards
-                    ForEach(0..<5) { _ in
-                        RecipeCardView()
+            if isLoading {
+                ProgressView("Fetching Recipes...")
+            } else {
+                ScrollView {
+                    VStack(spacing: 20) {
+                        ForEach(recipes) { recipe in
+                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                                RecipeCardView(recipe: recipe)
+                            }
+                        }
                     }
                 }
             }
             
             Spacer()
 
-            // Bottom Navigation Icons
             HStack {
                 Image(systemName: "house.fill")
                 Spacer()
@@ -48,20 +50,44 @@ struct RecipeGeneratorView: View {
                 Image(systemName: "person.circle")
             }
             .padding()
-            .foregroundColor(.purple)
+            .foregroundColor(.pink)
+        }
+        .onAppear {
+            fetchRecipes()
+        }
+    }
+
+    func fetchRecipes() {
+        RecipeNetworkManager().fetchRecipes(ingredients: ingredients) { fetchedRecipes in
+            DispatchQueue.main.async {
+                self.recipes = fetchedRecipes ?? []
+                self.isLoading = false
+            }
         }
     }
 }
 
 struct RecipeCardView: View {
+    var recipe: Recipe
+
     var body: some View {
         VStack(alignment: .leading) {
-            Image(systemName: "photo")
-                .resizable()
+            if let imageUrl = recipe.image, let url = URL(string: imageUrl) {
+                AsyncImage(url: url) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
                 .frame(height: 150)
                 .cornerRadius(10)
+            } else {
+                Image(systemName: "photo")
+                    .resizable()
+                    .frame(height: 150)
+                    .cornerRadius(10)
+            }
 
-            Text("Recipe Name")
+            Text(recipe.title)
                 .font(.headline)
                 .padding(.top, 10)
 

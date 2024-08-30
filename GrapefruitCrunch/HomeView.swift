@@ -11,10 +11,10 @@ struct HomeView: View {
     var body: some View {
         VStack {
             Spacer()
-            Image(systemName: "flame.fill") // Use a cooking-related icon
+            Image(systemName: "takeoutbag.and.cup.and.straw.fill")
                 .resizable()
                 .frame(width: 100, height: 100)
-                .foregroundColor(.purple)
+                .foregroundColor(.pink)
 
             Text("Home")
                 .font(.largeTitle)
@@ -22,12 +22,12 @@ struct HomeView: View {
 
             Spacer()
 
-            HStack {
+            VStack {
                 NavigationLink(destination: NewRecipeView()) {
                     Text("Find a new recipe")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.purple)
+                        .background(Color.pink)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
@@ -37,7 +37,7 @@ struct HomeView: View {
                     Text("Past recipes")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.purple)
+                        .background(Color.pink)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
@@ -57,7 +57,7 @@ struct HomeView: View {
                 Image(systemName: "person.circle")
             }
             .padding()
-            .foregroundColor(.purple)
+            .foregroundColor(.pink)
         }
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct NewRecipeView: View {
     @State private var ingredients: [String] = []
     @State private var currentIngredient = ""
-    
+
     var body: some View {
         VStack {
             Spacer()
@@ -24,14 +24,11 @@ struct NewRecipeView: View {
                 .padding(.horizontal)
             
             Button(action: {
-                if !currentIngredient.isEmpty {
-                    ingredients.append(currentIngredient)
-                    currentIngredient = ""
-                }
+                addIngredient()
             }) {
                 Text("Add Ingredient")
                     .padding()
-                    .background(Color.purple)
+                    .background(Color.pink)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
@@ -39,7 +36,16 @@ struct NewRecipeView: View {
 
             List {
                 ForEach(ingredients, id: \.self) { ingredient in
-                    Text(ingredient)
+                    HStack {
+                        Text(ingredient)
+                        Spacer()
+                        Button(action: {
+                            deleteIngredient(ingredient)
+                        }) {
+                            Image(systemName: "xmark.circle")
+                                .foregroundColor(.red)
+                        }
+                    }
                 }
             }
             .frame(height: 200)
@@ -50,7 +56,7 @@ struct NewRecipeView: View {
                 Text("Find Recipes")
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.purple)
+                    .background(Color.pink)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
@@ -69,7 +75,19 @@ struct NewRecipeView: View {
                 Image(systemName: "person.circle")
             }
             .padding()
-            .foregroundColor(.purple)
+            .foregroundColor(.pink)
+        }
+    }
+
+    private func addIngredient() {
+        guard !currentIngredient.isEmpty else { return }
+        ingredients.append(currentIngredient)
+        currentIngredient = ""
+    }
+
+    private func deleteIngredient(_ ingredient: String) {
+        if let index = ingredients.firstIndex(of: ingredient) {
+            ingredients.remove(at: index)
         }
     }
 }

@@ -10,8 +10,8 @@ import SwiftUI
 
 struct PastRecipesView: View {
     var body: some View {
-        Text("Past Recipes")
+        Text("Your saved recipes will appear here!")
             .font(.title)
-            .foregroundColor(.purple)
+            .foregroundColor(.pink)
     }
 }
