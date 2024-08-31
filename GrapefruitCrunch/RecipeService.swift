@@ -7,7 +7,7 @@
 import Foundation
 
 class RecipeNetworkManager {
-    let apiKey = "SPOONACULAR_API_KEY"
+    let apiKey = "75c3d123c750426f8460072f853fc27c"
     let baseURL = "https://api.spoonacular.com/recipes/findByIngredients"
 
     func fetchRecipes(ingredients: [String], completion: @escaping ([Recipe]?) -> Void) {
