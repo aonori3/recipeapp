@@ -8,32 +8,58 @@
 import Foundation
 import SwiftUI
 
-
 struct NewRecipeView: View {
     @State private var ingredients: [String] = []
     @State private var currentIngredient = ""
 
     var body: some View {
-        VStack {
-            Text("Let's Find You a New Recipe")
-                .font(.title)
-                .padding(.bottom, 20)
-            
-            TextField("Enter ingredients", text: $currentIngredient)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
-            
+        VStack(spacing: 20) {
+            HStack {
+                Image(systemName: "line.horizontal.3")
+                    .font(.title)
+                    .foregroundColor(.gray)
+                Spacer()
+                Image(systemName: "person.crop.circle")
+                    .font(.title)
+                    .foregroundColor(.gray)
+            }
+            .padding(.horizontal)
+
+            Text("Let's find a recipe for you!")
+                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .foregroundColor(.black)
+                .padding(.top)
+
+            Text("Enter ingredients you already have")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .padding(.bottom, 10)
+
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
+                TextField("Type your ingredients", text: $currentIngredient)
+                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                    .padding(.vertical, 12)
+            }
+            .padding(.horizontal)
+            .background(Color(.systemGray6))
+            .cornerRadius(15)
+            .padding(.horizontal)
+
             Button(action: {
                 addIngredient()
             }) {
                 Text("Add Ingredient")
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.pink)
+                    .background(Color.purple)
                     .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .cornerRadius(15)
             }
-            .padding(.bottom, 20)
-
+            .padding(.horizontal)
+            
             List {
                 ForEach(ingredients, id: \.self) { ingredient in
                     HStack {
@@ -51,19 +77,20 @@ struct NewRecipeView: View {
             .frame(height: 200)
 
             Spacer()
-            
+
             NavigationLink(destination: RecipeGeneratorView(ingredients: ingredients)) {
                 Text("Find Recipes")
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.pink)
+                    .background(Color.purple)
                     .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .cornerRadius(15)
             }
-            .padding()
-
-            Spacer()
+            .padding(.horizontal)
+            .padding(.bottom)
         }
+        .padding(.top)
     }
 
     private func addIngredient() {
