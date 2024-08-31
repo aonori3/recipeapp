@@ -45,18 +45,6 @@ struct HomeView: View {
             }
 
             Spacer()
-
-            HStack {
-                Image(systemName: "house.fill")
-                Spacer()
-                Image(systemName: "magnifyingglass")
-                Spacer()
-                Image(systemName: "bookmark")
-                Spacer()
-                Image(systemName: "person.circle")
-            }
-            .padding()
-            .foregroundColor(.pink)
         }
     }
 }

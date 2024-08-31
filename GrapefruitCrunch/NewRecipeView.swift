@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
+
 struct NewRecipeView: View {
     @State private var ingredients: [String] = []
     @State private var currentIngredient = ""
 
     var body: some View {
         VStack {
-            Spacer()
             Text("Let's Find You a New Recipe")
                 .font(.title)
                 .padding(.bottom, 20)
@@ -63,19 +63,6 @@ struct NewRecipeView: View {
             .padding()
 
             Spacer()
-
-            // Bottom Navigation Icons
-            HStack {
-                Image(systemName: "house.fill")
-                Spacer()
-                Image(systemName: "magnifyingglass")
-                Spacer()
-                Image(systemName: "bookmark")
-                Spacer()
-                Image(systemName: "person.circle")
-            }
-            .padding()
-            .foregroundColor(.pink)
         }
     }
 

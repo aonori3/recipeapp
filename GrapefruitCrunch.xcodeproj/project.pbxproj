@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4AB47572C82399D00961AD2 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB47562C82399D00961AD2 /* NavigationBarView.swift */; };
 		D8EDBD382C816EBC00BCCA06 /* GrapefruitCrunchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDBD372C816EBC00BCCA06 /* GrapefruitCrunchApp.swift */; };
 		D8EDBD3A2C816EBC00BCCA06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDBD392C816EBC00BCCA06 /* ContentView.swift */; };
 		D8EDBD3C2C816EBF00BCCA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8EDBD3B2C816EBF00BCCA06 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D4AB47562C82399D00961AD2 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		D8EDBD342C816EBC00BCCA06 /* GrapefruitCrunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrapefruitCrunch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8EDBD372C816EBC00BCCA06 /* GrapefruitCrunchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrapefruitCrunchApp.swift; sourceTree = "<group>"; };
 		D8EDBD392C816EBC00BCCA06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,13 +69,14 @@
 			children = (
 				D8EDBD372C816EBC00BCCA06 /* GrapefruitCrunchApp.swift */,
 				D8EDBD392C816EBC00BCCA06 /* ContentView.swift */,
-				D8EDBD4D2C81840200BCCA06 /* RecipeService.swift */,
+				D4AB47562C82399D00961AD2 /* NavigationBarView.swift */,
 				D8EDBD452C81764700BCCA06 /* HomeView.swift */,
 				D8EDBD472C81766900BCCA06 /* NewRecipeView.swift */,
+				D8EDBD4B2C8176CB00BCCA06 /* PastRecipesVIew.swift */,
 				D8EDBD492C81768B00BCCA06 /* RecipeGeneratorView.swift */,
 				D8EDBD4F2C818A3E00BCCA06 /* RecipeDetailView.swift */,
-				D8EDBD4B2C8176CB00BCCA06 /* PastRecipesVIew.swift */,
 				D8EDBD512C81939700BCCA06 /* PastRecipesManager.swift */,
+				D8EDBD4D2C81840200BCCA06 /* RecipeService.swift */,
 				D8EDBD3B2C816EBF00BCCA06 /* Assets.xcassets */,
 				D8EDBD3D2C816EBF00BCCA06 /* Preview Content */,
 			);
@@ -162,6 +165,7 @@
 				D8EDBD3A2C816EBC00BCCA06 /* ContentView.swift in Sources */,
 				D8EDBD522C81939700BCCA06 /* PastRecipesManager.swift in Sources */,
 				D8EDBD4E2C81840200BCCA06 /* RecipeService.swift in Sources */,
+				D4AB47572C82399D00961AD2 /* NavigationBarView.swift in Sources */,
 				D8EDBD382C816EBC00BCCA06 /* GrapefruitCrunchApp.swift in Sources */,
 				D8EDBD4A2C81768B00BCCA06 /* RecipeGeneratorView.swift in Sources */,
 				D8EDBD4C2C8176CB00BCCA06 /* PastRecipesVIew.swift in Sources */,

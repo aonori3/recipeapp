@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 struct PastRecipesView: View {
     @EnvironmentObject var pastRecipesManager: PastRecipesManager
     

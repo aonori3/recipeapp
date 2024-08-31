@@ -7,15 +7,28 @@
 
 import SwiftUI
 
-
 struct ContentView: View {
     @StateObject var pastRecipesManager = PastRecipesManager()
+    @State private var currentView = "Home"
 
     var body: some View {
         NavigationView {
-            HomeView()
-                .environmentObject(pastRecipesManager)
-                .navigationBarHidden(true)
+            VStack {
+                switch currentView {
+                case "Home":
+                    HomeView()
+                case "NewRecipe":
+                    NewRecipeView()
+                case "PastRecipes":
+                    PastRecipesView()
+                default:
+                    HomeView()
+                }
+                
+                NavigationBarView(currentView: $currentView)
+            }
+            .environmentObject(pastRecipesManager)
+            .navigationBarHidden(true)
         }
     }
 }
