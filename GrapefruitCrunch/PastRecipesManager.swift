@@ -42,4 +42,8 @@ class PastRecipesManager: ObservableObject {
             savedRecipes = decoded
         }
     }
+
+    func deleteRecipe(at offsets: IndexSet) {
+        savedRecipes.remove(atOffsets: offsets)
+    }
 }

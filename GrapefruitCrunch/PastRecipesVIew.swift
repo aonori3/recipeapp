@@ -10,20 +10,25 @@ import SwiftUI
 
 struct PastRecipesView: View {
     @EnvironmentObject var pastRecipesManager: PastRecipesManager
-    
+
     var body: some View {
         VStack {
-            Text("Saved Recipes")
+            Text("Past Recipes")
                 .font(.largeTitle)
                 .padding()
-            
+
             List {
                 ForEach(pastRecipesManager.savedRecipes) { recipe in
                     NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
                         Text(recipe.title)
                     }
                 }
+                .onDelete(perform: deleteRecipe) // Enable swipe-to-delete
             }
         }
+    }
+
+    private func deleteRecipe(at offsets: IndexSet) {
+        pastRecipesManager.savedRecipes.remove(atOffsets: offsets)
     }
 }
