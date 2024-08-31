@@ -82,7 +82,10 @@ struct RecipeDetailView: View {
     }
     
     func fetchRecipeDetails() {
-        guard let url = URL(string: "https://api.spoonacular.com/recipes/\(recipe.id)/information?apiKey=75c3d123c750426f8460072f853fc27c") else {
+        guard let apiKey = ProcessInfo.processInfo.environment["SPOONACULAR_API_KEY"] else {
+            fatalError("API key not found")
+        }
+        guard let url = URL(string: "https://api.spoonacular.com/recipes/\(recipe.id)/information?apiKey=\(apiKey)") else {
             print("Invalid URL")
             return
         }
