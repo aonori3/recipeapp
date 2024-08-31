@@ -15,17 +15,17 @@ struct NavigationBarView: View {
         HStack {
             Button(action: { currentView = "Home" }) {
                 Image(systemName: "house.fill")
-                    .foregroundColor(currentView == "Home" ? .pink : .gray)
+                    .foregroundColor(currentView == "Home" ? .purple : .gray)
             }
             Spacer()
             Button(action: { currentView = "NewRecipe" }) {
                 Image(systemName: "magnifyingglass")
-                    .foregroundColor(currentView == "NewRecipe" ? .pink : .gray)
+                    .foregroundColor(currentView == "NewRecipe" ? .purple : .gray)
             }
             Spacer()
             Button(action: { currentView = "PastRecipes" }) {
                 Image(systemName: "bookmark")
-                    .foregroundColor(currentView == "PastRecipes" ? .pink : .gray)
+                    .foregroundColor(currentView == "PastRecipes" ? .purple : .gray)
             }
             Spacer()
             Image(systemName: "person.circle")

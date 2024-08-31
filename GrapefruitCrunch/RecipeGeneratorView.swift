@@ -21,8 +21,9 @@ struct RecipeGeneratorView: View {
             .padding()
 
             Text("Recipes for You")
-                .font(.title)
-                .padding(.bottom, 10)
+                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .foregroundColor(.black)
+                .padding(.bottom, 20)
 
             if isLoading {
                 ProgressView("Fetching Recipes...")
@@ -88,12 +89,8 @@ struct RecipeCardView: View {
             }
 
             Text(recipe.title)
-                .font(.headline)
+                .font(.system(size: 20, weight: .bold, design: .rounded))
                 .padding(.top, 10)
-
-            Text("Short description of the recipe.")
-                .font(.subheadline)
-                .foregroundColor(.gray)
         }
         .padding()
         .background(Color.white)

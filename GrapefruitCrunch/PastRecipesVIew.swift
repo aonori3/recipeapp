@@ -13,14 +13,17 @@ struct PastRecipesView: View {
 
     var body: some View {
         VStack {
-            Text("Past Recipes")
-                .font(.largeTitle)
-                .padding()
+            Text("Saved Recipes")
+                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .foregroundColor(.black)
+                .padding(.top, 20)
 
             List {
                 ForEach(pastRecipesManager.savedRecipes) { recipe in
                     NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
                         Text(recipe.title)
+                            .font(.system(size: 18, weight: .medium, design: .rounded))
+                            .foregroundColor(.black)
                     }
                 }
                 .onDelete(perform: deleteRecipe) // Enable swipe-to-delete
