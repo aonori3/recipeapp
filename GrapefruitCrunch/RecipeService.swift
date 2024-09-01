@@ -17,14 +17,14 @@ class RecipeNetworkManager {
         You may add basic seasonings (salt, pepper, herbs, spices) as needed.
         Provide a detailed recipe with the following format:
 
-        **Recipe Title**
+        Dish: Recipe Title
 
-        *Ingredients:*
+        Ingredients:
         - Ingredient 1
         - Ingredient 2
         ...
 
-        *Instructions:*
+        Instructions:
         1. Step 1
         2. Step 2
         ...

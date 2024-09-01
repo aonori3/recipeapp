@@ -81,9 +81,11 @@ struct RecipeGeneratorView: View {
     }
 
     private func extractRecipeTitle(from recipeText: String) -> String {
-        if let range = recipeText.range(of: "**", options: .backwards),
-           let startRange = recipeText.range(of: "**") {
-            return String(recipeText[startRange.upperBound..<range.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines)
+        let lines = recipeText.components(separatedBy: .newlines)
+        for line in lines {
+            if line.lowercased().starts(with: "dish:") {
+                return line.replacingOccurrences(of: "Dish:", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+            }
         }
         return "Untitled Recipe"
     }
