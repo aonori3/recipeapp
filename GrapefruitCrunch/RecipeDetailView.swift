@@ -17,7 +17,7 @@ struct RecipeDetailView: View {
                 Text(recipe.title)
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.primaryColor)
 
                 Text("Ingredients:")
                     .font(.headline)

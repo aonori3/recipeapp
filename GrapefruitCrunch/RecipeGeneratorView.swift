@@ -24,7 +24,7 @@ struct RecipeGeneratorView: View {
                         Text(extractRecipeTitle(from: recipeText))
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(.purple)
+                            .foregroundColor(.primaryColor)
 
                         Text(recipeText)
                             .font(.body)
@@ -40,7 +40,7 @@ struct RecipeGeneratorView: View {
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Color.purple)
+                            .background(Color.primaryColor)
                             .cornerRadius(20)
                     }
 
@@ -51,7 +51,7 @@ struct RecipeGeneratorView: View {
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Color.purple)
+                            .background(Color.primaryColor)
                             .cornerRadius(20)
                     }
                 }

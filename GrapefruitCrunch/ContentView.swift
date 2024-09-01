@@ -31,7 +31,6 @@ struct ContentView: View {
             
             NavigationView {
                 NewRecipeView()
-                    .navigationBarTitle("New Recipe")
             }
             .tabItem {
                 Image(systemName: "magnifyingglass")
@@ -40,7 +39,6 @@ struct ContentView: View {
             
             NavigationView {
                 PastRecipesView()
-                    .navigationBarTitle("Saved Recipes")
             }
             .tabItem {
                 Image(systemName: "bookmark")
@@ -53,7 +51,7 @@ struct ContentView: View {
                 }
                 .tag("Profile")
         }
-        .accentColor(.purple)
+        .accentColor(.primaryColor)
         .environmentObject(pastRecipesManager)
     }
 }

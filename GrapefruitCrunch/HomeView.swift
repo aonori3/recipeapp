@@ -56,7 +56,7 @@ struct FeaturedRecipeCard: View {
         VStack(alignment: .leading) {
             Text("Featured Recipe")
                 .font(.headline)
-                .foregroundColor(.purple)
+                .foregroundColor(.primaryColor)
             Text(recipe.title)
                 .font(.title2)
                 .fontWeight(.bold)
@@ -69,7 +69,7 @@ struct FeaturedRecipeCard: View {
             .padding(.top, 8)
         }
         .padding()
-        .background(Color.purple.opacity(0.1))
+        .background(Color.primaryColor.opacity(0.1))
         .cornerRadius(10)
     }
 }

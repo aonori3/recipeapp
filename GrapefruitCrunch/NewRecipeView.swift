@@ -31,7 +31,7 @@ struct NewRecipeView: View {
                     Text("Add")
                         .padding(.horizontal)
                         .padding(.vertical, 8)
-                        .background(Color.purple)
+                        .background(Color.primaryColor)
                         .foregroundColor(.white)
                         .cornerRadius(20)
                 }
@@ -51,7 +51,7 @@ struct NewRecipeView: View {
                     .font(.system(size: 18, weight: .bold, design: .default))
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.purple)
+                    .background(Color.primaryColor)
                     .foregroundColor(.white)
                     .cornerRadius(20)
             }
