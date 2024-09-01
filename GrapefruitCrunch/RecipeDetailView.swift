@@ -19,14 +19,6 @@ struct RecipeDetailView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.primaryColor)
 
-                Text("Ingredients:")
-                    .font(.headline)
-                ForEach(recipe.ingredients, id: \.self) { ingredient in
-                    Text("• \(ingredient)")
-                }
-
-                Text("Instructions:")
-                    .font(.headline)
                 Text(recipe.instructions)
             }
             .padding()

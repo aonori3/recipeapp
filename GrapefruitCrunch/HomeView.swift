@@ -32,7 +32,12 @@ struct HomeView: View {
                         .frame(height: 200)
                 }
                 
-                RecentlyViewedSection()
+                RecentlyViewedSection(foodImageURLs: [
+                    URL(string: "https://tiffycooks.com/wp-content/uploads/2021/09/Screen-Shot-2021-09-28-at-11.49.14-PM-500x500.png")!,
+                    URL(string: "https://lucyandlentils.co.uk/wp-content/uploads/2023/10/IMG_9088.jpg")!,
+                    URL(string: "https://kristineskitchenblog.com/wp-content/uploads/2024/03/salad-recipe-10-2.jpg")!
+                ])
+                .padding()
                 
                 TipsAndTricksSection()
             }
@@ -75,16 +80,34 @@ struct FeaturedRecipeCard: View {
 }
 
 struct RecentlyViewedSection: View {
+    // Array of image URLs or food image data
+    let foodImageURLs: [URL]
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Recently Viewed")
                 .font(.headline)
+            
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
-                    ForEach(1...5, id: \.self) { _ in
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(width: 150, height: 100)
+                    ForEach(foodImageURLs.prefix(3), id: \.self) { url in
+                        AsyncImage(url: url) { phase in
+                            if let image = phase.image {
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 150, height: 100)
+                                    .cornerRadius(10)
+                            } else if phase.error != nil {
+                                Color.red // Indicates an error
+                                    .frame(width: 150, height: 100)
+                                    .cornerRadius(10)
+                            } else {
+                                Color.gray.opacity(0.2) // Placeholder
+                                    .frame(width: 150, height: 100)
+                                    .cornerRadius(10)
+                            }
+                        }
                     }
                 }
             }
@@ -95,12 +118,12 @@ struct RecentlyViewedSection: View {
 struct TipsAndTricksSection: View {
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Tips & Tricks")
+            Text("Quick Cooking Advice")
                 .font(.headline)
             VStack(alignment: .leading, spacing: 10) {
-                TipRow(text: "Use fresh ingredients for better flavor")
+                TipRow(text: "Use newly purchased ingredients")
                 TipRow(text: "Prep ingredients before cooking")
-                TipRow(text: "Don't overcrowd the pan")
+                TipRow(text: "Ensure to use enough salt")
             }
         }
     }

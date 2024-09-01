@@ -28,7 +28,7 @@ struct ContentView: View {
                 Image(systemName: "house.fill")
             }
             .tag("Home")
-            
+
             NavigationView {
                 NewRecipeView()
             }
@@ -36,7 +36,7 @@ struct ContentView: View {
                 Image(systemName: "magnifyingglass")
             }
             .tag("NewRecipe")
-            
+
             NavigationView {
                 PastRecipesView()
             }
@@ -44,12 +44,12 @@ struct ContentView: View {
                 Image(systemName: "bookmark")
             }
             .tag("PastRecipes")
-            
+
             Text("Profile Placeholder")
-                .tabItem {
-                    Image(systemName: "person.circle")
-                }
-                .tag("Profile")
+            .tabItem {
+                Image(systemName: "person.circle")
+            }
+            .tag("Profile")
         }
         .accentColor(.primaryColor)
         .environmentObject(pastRecipesManager)
