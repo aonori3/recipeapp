@@ -33,7 +33,7 @@ struct NewRecipeView: View {
                         .padding(.vertical, 8)
                         .background(Color.purple)
                         .foregroundColor(.white)
-                        .cornerRadius(8)
+                        .cornerRadius(20)
                 }
             }
             .padding(.horizontal)
@@ -48,12 +48,12 @@ struct NewRecipeView: View {
 
             NavigationLink(destination: RecipeGeneratorView(ingredients: ingredients)) {
                 Text("Generate Recipe")
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .font(.system(size: 18, weight: .bold, design: .default))
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.purple)
                     .foregroundColor(.white)
-                    .cornerRadius(15)
+                    .cornerRadius(20)
             }
             .padding(.horizontal)
             .disabled(ingredients.isEmpty)

@@ -41,7 +41,7 @@ struct RecipeGeneratorView: View {
                             .foregroundColor(.white)
                             .padding()
                             .background(Color.purple)
-                            .cornerRadius(10)
+                            .cornerRadius(20)
                     }
 
                     Button(action: {
@@ -52,7 +52,7 @@ struct RecipeGeneratorView: View {
                             .foregroundColor(.white)
                             .padding()
                             .background(Color.purple)
-                            .cornerRadius(10)
+                            .cornerRadius(20)
                     }
                 }
                 .padding()

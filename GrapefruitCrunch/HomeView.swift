@@ -23,12 +23,12 @@ struct HomeView: View {
                 selectedTab = "NewRecipe"
             }) {
                 Text("Find a new recipe")
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .font(.system(size: 18, weight: .medium, design: .default))
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.purple)
                     .foregroundColor(.white)
-                    .cornerRadius(15)
+                    .cornerRadius(20)
             }
             .padding()
             
@@ -36,12 +36,12 @@ struct HomeView: View {
                 selectedTab = "PastRecipes"
             }) {
                 Text("Saved recipes")
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .font(.system(size: 18, weight: .medium, design: .default))
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.purple)
                     .foregroundColor(.white)
-                    .cornerRadius(15)
+                    .cornerRadius(20)
             }
             .padding()
         }
