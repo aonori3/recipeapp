@@ -31,6 +31,12 @@ struct ContentView: View {
                         Image(systemName: "bookmark")
                     }
                     .tag("PastRecipes")
+                
+                Text("Profile Page")
+                    .tabItem {
+                        Image(systemName: "person.circle")
+                    }
+                    .tag("Profile")
             }
             .accentColor(.purple)
         }
