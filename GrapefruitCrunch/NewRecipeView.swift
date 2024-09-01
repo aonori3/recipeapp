@@ -79,7 +79,7 @@ struct NewRecipeView: View {
             Spacer()
 
             NavigationLink(destination: RecipeGeneratorView(ingredients: ingredients)) {
-                Text("Find Recipes")
+                Text("Find Recipe")
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                     .frame(maxWidth: .infinity)
                     .padding()

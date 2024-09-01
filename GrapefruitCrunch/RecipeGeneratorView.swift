@@ -8,50 +8,43 @@
 import Foundation
 import SwiftUI
 
+
 struct RecipeGeneratorView: View {
     var ingredients: [String]
-    @State private var recipes: [Recipe] = []
+    @State private var recipe: Recipe?
     @State private var isLoading = true
+    @State private var recipeText: String? = nil
 
     var body: some View {
         VStack {
             HStack {
-                Spacer()
+                Text("Recipes for You")
+                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                    .foregroundColor(.black)
+                    .padding(.bottom, 20)
             }
             .padding()
-
-            Text("Recipes for You")
-                .font(.system(size: 28, weight: .bold, design: .rounded))
-                .foregroundColor(.black)
-                .padding(.bottom, 20)
 
             if isLoading {
                 ProgressView("Fetching Recipes...")
-            } else {
-                ScrollView {
-                    VStack(spacing: 20) {
-                        ForEach(recipes) { recipe in
-                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                                RecipeCardView(recipe: recipe)
-                            }
-                        }
+                    .padding()
+            } else if let recipeText = recipeText {
+                VStack(spacing: 20) {
+                    // Button to navigate to the RecipeDetailView
+                    NavigationLink(destination: RecipeDetailView(recipeText: recipeText)) {
+                        Text("\(extractRecipeTitle(from: recipeText))")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.purple)
+                            .cornerRadius(10)
                     }
                 }
+            } else {
+                Text("Failed to fetch recipes.")
+                    .foregroundColor(.red)
+                    .padding()
             }
-            
-            Spacer()
-
-            HStack {
-                Image(systemName: "house.fill")
-                Spacer()
-                Image(systemName: "magnifyingglass")
-                Spacer()
-                Image(systemName: "bookmark")
-                Spacer()
-                Image(systemName: "person.circle")
-            }
-            .padding()
-            .foregroundColor(.pink)
         }
         .onAppear {
             fetchRecipes()
@@ -59,38 +52,47 @@ struct RecipeGeneratorView: View {
     }
 
     func fetchRecipes() {
-        RecipeNetworkManager().fetchRecipes(ingredients: ingredients) { fetchedRecipes in
+        print("Fetching recipes...")
+        RecipeNetworkManager().generateRecipe(ingredients: ingredients) { fetchedRecipe in
             DispatchQueue.main.async {
-                self.recipes = fetchedRecipes ?? []
-                self.isLoading = false
+                if let recipe = fetchedRecipe {
+                    print("\(recipe)")
+                    self.recipeText = recipe
+                    self.isLoading = false
+                } else {
+                    print("Failed to fetch recipe: nil response")
+                    self.recipeText = "Failed to generate recipe."
+                    self.isLoading = false
+                }
             }
         }
     }
+    func extractRecipeTitle(from recipeText: String) -> String {
+        // Assuming the recipe title is between "**" markers
+        if let startRange = recipeText.range(of: "**"),
+           let endRange = recipeText.range(of: "**", range: startRange.upperBound..<recipeText.endIndex) {
+            let title = recipeText[startRange.upperBound..<endRange.lowerBound]
+            return String(title).trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        return "Unnamed Recipe"
+    }
 }
 
+
 struct RecipeCardView: View {
-    var recipe: Recipe
+    var recipeText: String
 
     var body: some View {
         VStack(alignment: .leading) {
-            if let imageUrl = recipe.image, let url = URL(string: imageUrl) {
-                AsyncImage(url: url) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
-                }
-                .frame(height: 150)
-                .cornerRadius(10)
-            } else {
-                Image(systemName: "photo")
-                    .resizable()
-                    .frame(height: 150)
-                    .cornerRadius(10)
+            // Assuming you have a way to extract an image URL or placeholder text from `recipeText`.
+            // If you don't, you might need to extract it before passing `recipeText` to this view.
+            // For now, let's just show the recipe title.
+            if let titleRange = recipeText.range(of: "**"), let endTitleRange = recipeText.range(of: "**", range: titleRange.upperBound..<recipeText.endIndex) {
+                let title = String(recipeText[titleRange.upperBound..<endTitleRange.lowerBound])
+                Text(title)
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                    .padding(.top, 10)
             }
-
-            Text(recipe.title)
-                .font(.system(size: 20, weight: .bold, design: .rounded))
-                .padding(.top, 10)
         }
         .padding()
         .background(Color.white)

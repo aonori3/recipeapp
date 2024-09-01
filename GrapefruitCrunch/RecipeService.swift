@@ -7,42 +7,74 @@
 import Foundation
 
 class RecipeNetworkManager {
-    var apiKey: String {
-        guard let key = ProcessInfo.processInfo.environment["SPOONACULAR_API_KEY"] else {
-            fatalError("API key not found")
-        }
-        return key
-    }
-    let baseURL = "https://api.spoonacular.com/recipes/findByIngredients"
+    let apiKey = "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"
+    let baseURL = "https://api.openai.com/v1/chat/completions"
 
-    func fetchRecipes(ingredients: [String], completion: @escaping ([Recipe]?) -> Void) {
-        let ingredientsString = ingredients.joined(separator: ",")
-        let urlString = "\(baseURL)?ingredients=\(ingredientsString)&number=10&apiKey=\(apiKey)"
-        
-        guard let url = URL(string: urlString) else {
+    func generateRecipe(ingredients: [String], completion: @escaping (String?) -> Void) {
+        let prompt = "Create a recipe using only the following ingredients: \(ingredients.joined(separator: ", ")). Provide a detailed recipe."
+
+        let parameters: [String: Any] = [
+            "model": "gpt-3.5-turbo",
+            "messages": [
+                ["role": "system", "content": "You are a helpful assistant."],
+                ["role": "user", "content": prompt]
+            ],
+            "max_tokens": 150
+        ]
+
+        guard let url = URL(string: baseURL) else {
             completion(nil)
             return
         }
 
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                do {
-                    let recipes = try JSONDecoder().decode([Recipe].self, from: data)
-                    completion(recipes)
-                } catch {
-                    print("Error decoding JSON: \(error)")
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
+        } catch {
+            print("Failed to serialize JSON: \(error)")
+            completion(nil)
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error fetching data: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+
+            guard let data = data else {
+                print("No data received")
+                completion(nil)
+                return
+            }
+
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let choices = json["choices"] as? [[String: Any]],
+                   let message = choices.first?["message"] as? [String: Any],
+                   let text = message["content"] as? String {
+                    completion(text.trimmingCharacters(in: .whitespacesAndNewlines))
+                } else {
+                    print("Unexpected JSON structure")
                     completion(nil)
                 }
-            } else {
-                print("Error fetching data: \(error?.localizedDescription ?? "Unknown error")")
+            } catch {
+                print("Error decoding JSON: \(error)")
                 completion(nil)
             }
         }.resume()
     }
 }
 
-struct Recipe: Codable, Identifiable {
-    let id: Int
-    let title: String
-    let image: String?
+struct Recipe: Identifiable, Codable {
+    var id: UUID = UUID()
+    var title: String
+    var image: String?
+    var ingredients: [String]  // Array of ingredients
+    var instructions: String  // Recipe instructions
 }

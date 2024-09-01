@@ -47,3 +47,4 @@ class PastRecipesManager: ObservableObject {
         savedRecipes.remove(atOffsets: offsets)
     }
 }
+

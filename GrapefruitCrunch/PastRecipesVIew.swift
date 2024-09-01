@@ -20,7 +20,7 @@ struct PastRecipesView: View {
 
             List {
                 ForEach(pastRecipesManager.savedRecipes) { recipe in
-                    NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                    NavigationLink(destination: RecipeDetailView(recipeText: recipe.title)) {
                         Text(recipe.title)
                             .font(.system(size: 18, weight: .medium, design: .rounded))
                             .foregroundColor(.black)
