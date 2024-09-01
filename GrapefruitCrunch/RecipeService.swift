@@ -4,22 +4,41 @@
 //
 //  Created by ashley mo on 8/29/24.
 //
+
 import Foundation
 
 class RecipeNetworkManager {
-    let apiKey = "API_KEY"
+    let apiKey = "OPENAI_API_KEY"
     let baseURL = "https://api.openai.com/v1/chat/completions"
 
     func generateRecipe(ingredients: [String], completion: @escaping (String?) -> Void) {
-        let prompt = "Create a recipe using only the following ingredients: \(ingredients.joined(separator: ", ")). Provide a detailed recipe."
+        let prompt = """
+        Create a recipe using only the following ingredients or a subset of them: \(ingredients.joined(separator: ", ")).
+        You may add basic seasonings (salt, pepper, herbs, spices) as needed.
+        Provide a detailed recipe with the following format:
+
+        **Recipe Title**
+
+        *Ingredients:*
+        - Ingredient 1
+        - Ingredient 2
+        ...
+
+        *Instructions:*
+        1. Step 1
+        2. Step 2
+        ...
+
+        Ensure that the recipe uses only the provided ingredients or less, plus basic seasonings.
+        """
 
         let parameters: [String: Any] = [
             "model": "gpt-3.5-turbo",
             "messages": [
-                ["role": "system", "content": "You are a helpful assistant."],
+                ["role": "system", "content": "You are a helpful assistant that creates recipes."],
                 ["role": "user", "content": prompt]
             ],
-            "max_tokens": 150
+            "max_tokens": 500
         ]
 
         guard let url = URL(string: baseURL) else {
@@ -69,12 +88,4 @@ class RecipeNetworkManager {
             }
         }.resume()
     }
-}
-
-struct Recipe: Identifiable, Codable {
-    var id: UUID = UUID()
-    var title: String
-    var image: String?
-    var ingredients: [String]  // Array of ingredients
-    var instructions: String  // Recipe instructions
 }

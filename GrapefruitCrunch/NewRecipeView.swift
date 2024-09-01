@@ -14,17 +14,6 @@ struct NewRecipeView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            HStack {
-                Image(systemName: "line.horizontal.3")
-                    .font(.title)
-                    .foregroundColor(.gray)
-                Spacer()
-                Image(systemName: "person.crop.circle")
-                    .font(.title)
-                    .foregroundColor(.gray)
-            }
-            .padding(.horizontal)
-
             Text("Let's find a recipe for you!")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
                 .foregroundColor(.black)
@@ -36,50 +25,29 @@ struct NewRecipeView: View {
                 .padding(.bottom, 10)
 
             HStack {
-                Image(systemName: "magnifyingglass")
-                    .foregroundColor(.gray)
                 TextField("Type your ingredients", text: $currentIngredient)
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .padding(.vertical, 12)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Button(action: addIngredient) {
+                    Text("Add")
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .background(Color.purple)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
             }
-            .padding(.horizontal)
-            .background(Color(.systemGray6))
-            .cornerRadius(15)
             .padding(.horizontal)
 
-            Button(action: {
-                addIngredient()
-            }) {
-                Text("Add Ingredient")
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.purple)
-                    .foregroundColor(.white)
-                    .cornerRadius(15)
-            }
-            .padding(.horizontal)
-            
             List {
                 ForEach(ingredients, id: \.self) { ingredient in
-                    HStack {
-                        Text(ingredient)
-                        Spacer()
-                        Button(action: {
-                            deleteIngredient(ingredient)
-                        }) {
-                            Image(systemName: "xmark.circle")
-                                .foregroundColor(.red)
-                        }
-                    }
+                    Text(ingredient)
                 }
+                .onDelete(perform: deleteIngredient)
             }
             .frame(height: 200)
 
-            Spacer()
-
             NavigationLink(destination: RecipeGeneratorView(ingredients: ingredients)) {
-                Text("Find Recipe")
+                Text("Generate Recipe")
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -88,7 +56,7 @@ struct NewRecipeView: View {
                     .cornerRadius(15)
             }
             .padding(.horizontal)
-            .padding(.bottom)
+            .disabled(ingredients.isEmpty)
         }
         .padding(.top)
     }
@@ -99,9 +67,7 @@ struct NewRecipeView: View {
         currentIngredient = ""
     }
 
-    private func deleteIngredient(_ ingredient: String) {
-        if let index = ingredients.firstIndex(of: ingredient) {
-            ingredients.remove(at: index)
-        }
+    private func deleteIngredient(at offsets: IndexSet) {
+        ingredients.remove(atOffsets: offsets)
     }
 }

@@ -9,26 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var pastRecipesManager = PastRecipesManager()
-    @State private var currentView = "Home"
+    @State private var selectedTab = "Home"
 
     var body: some View {
         NavigationView {
-            VStack {
-                switch currentView {
-                case "Home":
-                    HomeView()
-                case "NewRecipe":
-                    NewRecipeView()
-                case "PastRecipes":
-                    PastRecipesView()
-                default:
-                    HomeView()
-                }
+            TabView(selection: $selectedTab) {
+                HomeView(selectedTab: $selectedTab)
+                    .tabItem {
+                        Image(systemName: "house.fill")
+                    }
+                    .tag("Home")
                 
-                NavigationBarView(currentView: $currentView)
+                NewRecipeView()
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    .tag("NewRecipe")
+                
+                PastRecipesView()
+                    .tabItem {
+                        Image(systemName: "bookmark")
+                    }
+                    .tag("PastRecipes")
             }
-            .environmentObject(pastRecipesManager)
-            .navigationBarHidden(true)
+            .accentColor(.purple)
         }
+        .environmentObject(pastRecipesManager)
     }
 }

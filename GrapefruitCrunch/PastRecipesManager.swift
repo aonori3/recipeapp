@@ -4,10 +4,16 @@
 //
 //  Created by ashley mo on 8/29/24.
 //
-
 import Foundation
 import SwiftUI
 import Combine
+
+struct Recipe: Identifiable, Codable {
+    var id = UUID()
+    var title: String
+    var ingredients: [String]
+    var instructions: String
+}
 
 class PastRecipesManager: ObservableObject {
     @Published var savedRecipes: [Recipe] = [] {
@@ -47,4 +53,3 @@ class PastRecipesManager: ObservableObject {
         savedRecipes.remove(atOffsets: offsets)
     }
 }
-

@@ -5,99 +5,93 @@
 //  Created by ashley mo on 8/29/24.
 //
 
-import Foundation
 import SwiftUI
-
 
 struct RecipeGeneratorView: View {
     var ingredients: [String]
-    @State private var recipe: Recipe?
+    @State private var recipeText: String?
     @State private var isLoading = true
-    @State private var recipeText: String? = nil
+    @EnvironmentObject var pastRecipesManager: PastRecipesManager
+    @State private var showingSavedAlert = false
 
     var body: some View {
         VStack {
-            HStack {
-                Text("Recipes for You")
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundColor(.black)
-                    .padding(.bottom, 20)
-            }
-            .padding()
-
             if isLoading {
-                ProgressView("Fetching Recipes...")
-                    .padding()
+                ProgressView("Generating Recipe...")
             } else if let recipeText = recipeText {
-                VStack(spacing: 20) {
-                    // Button to navigate to the RecipeDetailView
-                    NavigationLink(destination: RecipeDetailView(recipeText: recipeText)) {
-                        Text("\(extractRecipeTitle(from: recipeText))")
-                            .font(.title2)
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text(extractRecipeTitle(from: recipeText))
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.purple)
+
+                        Text(recipeText)
+                            .font(.body)
+                    }
+                    .padding()
+                }
+                
+                HStack {
+                    Button(action: {
+                        saveRecipe()
+                    }) {
+                        Text("Save Recipe")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.purple)
+                            .cornerRadius(10)
+                    }
+
+                    Button(action: {
+                        fetchRecipe()
+                    }) {
+                        Text("Generate New Recipe")
+                            .font(.headline)
                             .foregroundColor(.white)
                             .padding()
                             .background(Color.purple)
                             .cornerRadius(10)
                     }
                 }
+                .padding()
             } else {
-                Text("Failed to fetch recipes.")
+                Text("Failed to fetch recipe.")
                     .foregroundColor(.red)
-                    .padding()
             }
         }
+        .navigationTitle("Generated Recipe")
         .onAppear {
-            fetchRecipes()
+            fetchRecipe()
+        }
+        .alert(isPresented: $showingSavedAlert) {
+            Alert(title: Text("Recipe Saved"), message: Text("The recipe has been saved successfully."), dismissButton: .default(Text("OK")))
         }
     }
 
-    func fetchRecipes() {
-        print("Fetching recipes...")
+    private func fetchRecipe() {
+        isLoading = true
         RecipeNetworkManager().generateRecipe(ingredients: ingredients) { fetchedRecipe in
             DispatchQueue.main.async {
-                if let recipe = fetchedRecipe {
-                    print("\(recipe)")
-                    self.recipeText = recipe
-                    self.isLoading = false
-                } else {
-                    print("Failed to fetch recipe: nil response")
-                    self.recipeText = "Failed to generate recipe."
-                    self.isLoading = false
-                }
+                self.recipeText = fetchedRecipe
+                self.isLoading = false
             }
         }
     }
-    func extractRecipeTitle(from recipeText: String) -> String {
-        // Assuming the recipe title is between "**" markers
-        if let startRange = recipeText.range(of: "**"),
-           let endRange = recipeText.range(of: "**", range: startRange.upperBound..<recipeText.endIndex) {
-            let title = recipeText[startRange.upperBound..<endRange.lowerBound]
-            return String(title).trimmingCharacters(in: .whitespacesAndNewlines)
+
+    private func extractRecipeTitle(from recipeText: String) -> String {
+        if let range = recipeText.range(of: "**", options: .backwards),
+           let startRange = recipeText.range(of: "**") {
+            return String(recipeText[startRange.upperBound..<range.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines)
         }
-        return "Unnamed Recipe"
+        return "Untitled Recipe"
     }
-}
 
-
-struct RecipeCardView: View {
-    var recipeText: String
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            // Assuming you have a way to extract an image URL or placeholder text from `recipeText`.
-            // If you don't, you might need to extract it before passing `recipeText` to this view.
-            // For now, let's just show the recipe title.
-            if let titleRange = recipeText.range(of: "**"), let endTitleRange = recipeText.range(of: "**", range: titleRange.upperBound..<recipeText.endIndex) {
-                let title = String(recipeText[titleRange.upperBound..<endTitleRange.lowerBound])
-                Text(title)
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
-                    .padding(.top, 10)
-            }
-        }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 5)
-        .padding(.horizontal)
+    private func saveRecipe() {
+        guard let recipeText = recipeText else { return }
+        let newRecipe = Recipe(title: extractRecipeTitle(from: recipeText), ingredients: ingredients, instructions: recipeText)
+        pastRecipesManager.addRecipe(newRecipe)
+        showingSavedAlert = true
     }
 }
