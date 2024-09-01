@@ -7,7 +7,7 @@
 import Foundation
 
 class RecipeNetworkManager {
-    let apiKey = "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"
+    let apiKey = "API_KEY"
     let baseURL = "https://api.openai.com/v1/chat/completions"
 
     func generateRecipe(ingredients: [String], completion: @escaping (String?) -> Void) {
