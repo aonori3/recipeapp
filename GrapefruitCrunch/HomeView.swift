@@ -32,7 +32,7 @@ struct HomeView: View {
                 .foregroundColor(.purple)
                 .padding(.bottom, 10)
             
-            Text("Home")
+            Text("Recipe Generator")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
                 .foregroundColor(.black)
                 .padding(.bottom, 20)
