@@ -1,3 +1,8 @@
 .env
 
 .DS_Store
+
+GrapefruitCrunch.xcodeproj/project.xcworkspace/
+GrapefruitCrunch.xcodeproj/xcuserdata/
+GrapefruitCrunch.xcodeproj/*.xcuserstate
+GrapefruitCrunch.xcodeproj/xcshareddata/xcschemes/*
