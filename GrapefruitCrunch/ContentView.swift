@@ -12,34 +12,48 @@ struct ContentView: View {
     @State private var selectedTab = "Home"
 
     var body: some View {
-        NavigationView {
-            TabView(selection: $selectedTab) {
+        TabView(selection: $selectedTab) {
+            NavigationView {
                 HomeView(selectedTab: $selectedTab)
-                    .tabItem {
-                        Image(systemName: "house.fill")
-                    }
-                    .tag("Home")
-                
-                NewRecipeView()
-                    .tabItem {
-                        Image(systemName: "magnifyingglass")
-                    }
-                    .tag("NewRecipe")
-                
-                PastRecipesView()
-                    .tabItem {
-                        Image(systemName: "bookmark")
-                    }
-                    .tag("PastRecipes")
-                
-                Text("Profile Page")
-                    .tabItem {
-                        Image(systemName: "person.circle")
-                    }
-                    .tag("Profile")
+                    .navigationBarTitle("", displayMode: .inline)
+                    .navigationBarItems(leading:
+                        Button(action: {
+                            // Add menu action here
+                        }) {
+                            Image(systemName: "line.horizontal.3")
+                        }
+                    )
             }
-            .accentColor(.purple)
+            .tabItem {
+                Image(systemName: "house.fill")
+            }
+            .tag("Home")
+            
+            NavigationView {
+                NewRecipeView()
+                    .navigationBarTitle("New Recipe")
+            }
+            .tabItem {
+                Image(systemName: "magnifyingglass")
+            }
+            .tag("NewRecipe")
+            
+            NavigationView {
+                PastRecipesView()
+                    .navigationBarTitle("Saved Recipes")
+            }
+            .tabItem {
+                Image(systemName: "bookmark")
+            }
+            .tag("PastRecipes")
+            
+            Text("Profile Placeholder")
+                .tabItem {
+                    Image(systemName: "person.circle")
+                }
+                .tag("Profile")
         }
+        .accentColor(.purple)
         .environmentObject(pastRecipesManager)
     }
 }
