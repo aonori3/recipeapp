@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var pastRecipesManager = PastRecipesManager()
     @State private var selectedTab = "Home"
+    @Binding var userIsLoggedIn: Bool
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -46,7 +47,7 @@ struct ContentView: View {
             .tag("PastRecipes")
 
             NavigationView {
-                ProfileView()
+                ProfileView(userIsLoggedIn: $userIsLoggedIn)
             }
             .tabItem {
                 Image(systemName: "person.circle")
@@ -55,5 +56,11 @@ struct ContentView: View {
         }
         .accentColor(.primaryColor)
         .environmentObject(pastRecipesManager)
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(userIsLoggedIn: .constant(true))
     }
 }
