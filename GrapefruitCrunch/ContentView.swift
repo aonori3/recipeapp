@@ -45,7 +45,9 @@ struct ContentView: View {
             }
             .tag("PastRecipes")
 
-            Text("Profile Placeholder")
+            NavigationView {
+                ProfileView()
+            }
             .tabItem {
                 Image(systemName: "person.circle")
             }
