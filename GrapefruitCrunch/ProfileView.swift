@@ -1,10 +1,3 @@
-//
-//  ProfileView.swift
-//  GrapefruitCrunch
-//
-//  Created by Aoi Otani on 2024/09/10.
-//
-
 import SwiftUI
 import Firebase
 import FirebaseAuth

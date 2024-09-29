@@ -1,10 +1,3 @@
-//
-//  NavigationBarView.swift
-//  GrapefruitCrunch
-//
-//  Created by Aoi Otani on 2024/08/30.
-//
-
 import SwiftUI
 
 

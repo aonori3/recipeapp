@@ -1,10 +1,3 @@
-//
-//  GrapefruitCrunchApp.swift
-//  GrapefruitCrunch
-//
-//  Created by ashley mo on 8/29/24.
-//
-
 import SwiftUI
 import Firebase
 import FirebaseAuth

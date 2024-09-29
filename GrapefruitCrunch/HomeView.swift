@@ -1,10 +1,3 @@
-//
-//  HomeView.swift
-//  GrapefruitCrunch
-//
-//  Created by ashley mo on 8/29/24.
-//
-
 import SwiftUI
 
 struct HomeView: View {

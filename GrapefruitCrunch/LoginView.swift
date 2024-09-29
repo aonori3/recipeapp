@@ -1,10 +1,3 @@
-//
-//  LoginView.swift
-//  GrapefruitCrunch
-//
-//  Created by Aoi Otani on 2024/09/11.
-//
-
 import SwiftUI
 import FirebaseAuth
 
