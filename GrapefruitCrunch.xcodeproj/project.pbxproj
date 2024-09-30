@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D42031482CAAD82200A700C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D42031472CAAD82200A700C2 /* GoogleService-Info.plist */; };
+		D42031692CAB240600A700C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D42031682CAB240600A700C2 /* GoogleService-Info.plist */; };
 		D49C0E4B2C912A5800D529C0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C0E4A2C912A5800D529C0 /* ProfileView.swift */; };
 		D49C0E522C91EB2700D529C0 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D49C0E512C91EB2700D529C0 /* FirebaseAnalytics */; };
 		D49C0E542C91F0AB00D529C0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D49C0E532C91F0AB00D529C0 /* FirebaseAuth */; };
@@ -30,7 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D42031472CAAD82200A700C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D42031682CAB240600A700C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D49C0E4A2C912A5800D529C0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D49C0E592C92090C00D529C0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D4AB47562C82399D00961AD2 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 				D8EDBD4B2C8176CB00BCCA06 /* PastRecipesVIew.swift */,
 				D8EDBD492C81768B00BCCA06 /* RecipeGeneratorView.swift */,
 				D8EDBD4F2C818A3E00BCCA06 /* RecipeDetailView.swift */,
-				D42031472CAAD82200A700C2 /* GoogleService-Info.plist */,
+				D42031682CAB240600A700C2 /* GoogleService-Info.plist */,
 				D8EDBD512C81939700BCCA06 /* PastRecipesManager.swift */,
 				D8EDBD4D2C81840200BCCA06 /* RecipeService.swift */,
 				D8EDBD3B2C816EBF00BCCA06 /* Assets.xcassets */,
@@ -172,7 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8EDBD3C2C816EBF00BCCA06 /* Assets.xcassets in Resources */,
-				D42031482CAAD82200A700C2 /* GoogleService-Info.plist in Resources */,
+				D42031692CAB240600A700C2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
