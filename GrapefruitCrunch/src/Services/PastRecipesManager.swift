@@ -2,13 +2,6 @@ import Foundation
 import SwiftUI
 import Combine
 
-struct Recipe: Identifiable, Codable {
-    var id = UUID()
-    var title: String
-    var ingredients: [String]
-    var instructions: String
-}
-
 class PastRecipesManager: ObservableObject {
     @Published var savedRecipes: [Recipe] = [] {
         didSet {

@@ -65,7 +65,7 @@ struct RecipeGeneratorView: View {
 
     private func fetchRecipe() {
         isLoading = true
-        RecipeNetworkManager().generateRecipe(ingredients: ingredients) { fetchedRecipe in
+        RecipeNetworkService().generateRecipe(ingredients: ingredients) { fetchedRecipe in
             DispatchQueue.main.async {
                 self.recipeText = fetchedRecipe
                 self.isLoading = false

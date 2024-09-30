@@ -1,6 +1,6 @@
 import Foundation
 
-class RecipeNetworkManager {
+class RecipeNetworkService {
     let apiKey = "OPENAI_API_KEY"
     let baseURL = "https://api.openai.com/v1/chat/completions"
 
