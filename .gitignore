@@ -1,20 +1,19 @@
+# Environment & Configuration
 .env
 
-.DS_Store
+# Ignore all plist files
+*.plist
 
+# Xcode Project Settings
 GrapefruitCrunch.xcodeproj/project.xcworkspace/
 GrapefruitCrunch.xcodeproj/xcuserdata/
 GrapefruitCrunch.xcodeproj/*.xcuserstate
 GrapefruitCrunch.xcodeproj/xcshareddata/xcschemes/*
 
-
-# GoogleService-Info
-GoogleService-Info.plist
-
 # Xcode Derived Data
 DerivedData/
 
-# Build artifacts
+# Build Artifacts
 build/
 *.ipa
 *.app
@@ -31,17 +30,17 @@ Carthage/Build/
 .swiftpm/
 Package.resolved
 
-# Xcode-specific files
+# Xcode Specific Files
 *.xcworkspace
 *.xcuserstate
 xcuserdata/
 
-# macOS system files
+# macOS System Files
 *.DS_Store
 *.AppleDouble
 *.LSOverride
 
-# Temporary files
-*~ 
+# Temporary Files
+*~
 *.swp
 
