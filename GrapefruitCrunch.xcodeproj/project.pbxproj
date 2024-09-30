@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D42031692CAB240600A700C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D42031682CAB240600A700C2 /* GoogleService-Info.plist */; };
+		D420316C2CAB257600A700C2 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420316B2CAB257400A700C2 /* SignUpView.swift */; };
+		D420316E2CAB313500A700C2 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420316D2CAB312D00A700C2 /* ChangePasswordView.swift */; };
 		D49C0E4B2C912A5800D529C0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C0E4A2C912A5800D529C0 /* ProfileView.swift */; };
 		D49C0E522C91EB2700D529C0 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D49C0E512C91EB2700D529C0 /* FirebaseAnalytics */; };
 		D49C0E542C91F0AB00D529C0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D49C0E532C91F0AB00D529C0 /* FirebaseAuth */; };
@@ -31,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		D42031682CAB240600A700C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D420316B2CAB257400A700C2 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		D420316D2CAB312D00A700C2 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		D49C0E4A2C912A5800D529C0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D49C0E592C92090C00D529C0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D4AB47562C82399D00961AD2 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
@@ -64,6 +68,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D420316A2CAB256C00A700C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D8EDBD2B2C816EBC00BCCA06 = {
 			isa = PBXGroup;
 			children = (
@@ -86,8 +97,11 @@
 				D8EDBD372C816EBC00BCCA06 /* GrapefruitCrunchApp.swift */,
 				D4EC68632C84EF150031EAAB /* ColorExtensions.swift */,
 				D49C0E592C92090C00D529C0 /* LoginView.swift */,
+				D420316B2CAB257400A700C2 /* SignUpView.swift */,
+				D420316A2CAB256C00A700C2 /* Views */,
 				D8EDBD392C816EBC00BCCA06 /* ContentView.swift */,
 				D49C0E4A2C912A5800D529C0 /* ProfileView.swift */,
+				D420316D2CAB312D00A700C2 /* ChangePasswordView.swift */,
 				D4AB47562C82399D00961AD2 /* NavigationBarView.swift */,
 				D8EDBD452C81764700BCCA06 /* HomeView.swift */,
 				D8EDBD472C81766900BCCA06 /* NewRecipeView.swift */,
@@ -190,9 +204,11 @@
 				D49C0E4B2C912A5800D529C0 /* ProfileView.swift in Sources */,
 				D8EDBD4E2C81840200BCCA06 /* RecipeService.swift in Sources */,
 				D4AB47572C82399D00961AD2 /* NavigationBarView.swift in Sources */,
+				D420316E2CAB313500A700C2 /* ChangePasswordView.swift in Sources */,
 				D8EDBD382C816EBC00BCCA06 /* GrapefruitCrunchApp.swift in Sources */,
 				D8EDBD4A2C81768B00BCCA06 /* RecipeGeneratorView.swift in Sources */,
 				D8EDBD4C2C8176CB00BCCA06 /* PastRecipesVIew.swift in Sources */,
+				D420316C2CAB257600A700C2 /* SignUpView.swift in Sources */,
 				D49C0E5A2C92090C00D529C0 /* LoginView.swift in Sources */,
 				D8EDBD482C81766900BCCA06 /* NewRecipeView.swift in Sources */,
 				D8EDBD502C818A3E00BCCA06 /* RecipeDetailView.swift in Sources */,
