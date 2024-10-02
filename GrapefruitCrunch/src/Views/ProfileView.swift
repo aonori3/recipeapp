@@ -1,5 +1,6 @@
 import SwiftUI
 import Firebase
+import FirebaseStorage
 import FirebaseAuth
 
 struct ProfileView: View {
@@ -9,6 +10,10 @@ struct ProfileView: View {
     @State private var showingLogoutAlert = false
     @State private var showingChangePasswordView = false
     @Binding var userIsLoggedIn: Bool
+    
+    @State private var profileImage: UIImage?
+    @State private var showingImagePicker = false
+    
     @EnvironmentObject var colorSchemeManager: ColorSchemeManager
     @Environment(\.colorScheme) var colorScheme
     
@@ -24,11 +29,27 @@ struct ProfileView: View {
                         .padding(.top, 20)
                     
                     VStack(alignment: .center) {
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
-                            .foregroundColor(.primary)
+                        Button(action: {
+                            showingImagePicker = true
+                        }) {
+                            if let image = profileImage {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 100, height: 100)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                            } else {
+                                Image(systemName: "person.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                    .foregroundColor(.primary)
+                            }
+                        }
+                        .sheet(isPresented: $showingImagePicker, onDismiss: uploadProfilePicture) {
+                            ImagePicker(image: $profileImage)
+                        }
                         
                         TextField("Username", text: $username)
                             .font(.system(size: 18, weight: .medium, design: .rounded))
@@ -36,7 +57,7 @@ struct ProfileView: View {
                         
                         Text(email)
                             .font(.system(size: 16, weight: .regular, design: .rounded))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.gray)
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -116,6 +137,41 @@ struct ProfileView: View {
         if let user = Auth.auth().currentUser {
             email = user.email ?? ""
             // Load other user data
+            loadProfilePicture()
+        }
+    }
+    
+    private func loadProfilePicture() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let storageRef = Storage.storage().reference().child("profile_pictures/\(uid).jpg")
+        
+        storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if let error = error {
+                print("Error downloading profile picture: \(error.localizedDescription)")
+            } else if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.profileImage = image
+                }
+            }
+        }
+    }
+    
+    private func uploadProfilePicture() {
+        guard let uid = Auth.auth().currentUser?.uid, let image = profileImage else { return }
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+            print("Could not convert image to data")
+            return
+        }
+        
+        let storageRef = Storage.storage().reference().child("profile_pictures/\(uid).jpg")
+        
+        storageRef.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
+                print("Error uploading profile picture: \(error.localizedDescription)")
+            } else {
+                print("Profile picture uploaded successfully")
+            }
         }
     }
     
@@ -125,6 +181,39 @@ struct ProfileView: View {
             userIsLoggedIn = false
         } catch {
             print("Error signing out: \(error.localizedDescription)")
+        }
+    }
+}
+
+struct ImagePicker: UIViewControllerRepresentable {
+    @Binding var image: UIImage?
+    @Environment(\.presentationMode) private var presentationMode
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = context.coordinator
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {}
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        let parent: ImagePicker
+
+        init(_ parent: ImagePicker) {
+            self.parent = parent
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let uiImage = info[.originalImage] as? UIImage {
+                parent.image = uiImage
+            }
+
+            parent.presentationMode.wrappedValue.dismiss()
         }
     }
 }

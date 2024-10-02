@@ -22,6 +22,8 @@
 		D4EC68642C84EF150031EAAB /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC68632C84EF150031EAAB /* ColorExtensions.swift */; };
 		D4FA27612CAB51EE00F56482 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4FA27602CAB51EE00F56482 /* GoogleService-Info.plist */; };
 		D4FA27632CAD9AA700F56482 /* ColorSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA27622CAD9A9F00F56482 /* ColorSchemeManager.swift */; };
+		D4FA27792CADC34600F56482 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D4FA27782CADC34600F56482 /* FirebaseStorage */; };
+		D4FA277B2CADC34600F56482 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D4FA277A2CADC34600F56482 /* FirebaseStorageCombine-Community */; };
 		D8EDBD382C816EBC00BCCA06 /* GrapefruitCrunchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDBD372C816EBC00BCCA06 /* GrapefruitCrunchApp.swift */; };
 		D8EDBD3A2C816EBC00BCCA06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDBD392C816EBC00BCCA06 /* ContentView.swift */; };
 		D8EDBD3C2C816EBF00BCCA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8EDBD3B2C816EBF00BCCA06 /* Assets.xcassets */; };
@@ -64,10 +66,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D49C0E522C91EB2700D529C0 /* FirebaseAnalytics in Frameworks */,
+				D4FA277B2CADC34600F56482 /* FirebaseStorageCombine-Community in Frameworks */,
 				D49C0E5D2C920F9C00D529C0 /* OpenAISwift in Frameworks */,
 				D49C0E562C91F0D200D529C0 /* FirebaseAuth in Frameworks */,
 				D49C0E542C91F0AB00D529C0 /* FirebaseAuth in Frameworks */,
 				D49C0E582C91F12600D529C0 /* FirebaseAuth in Frameworks */,
+				D4FA27792CADC34600F56482 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +183,8 @@
 				D49C0E552C91F0D200D529C0 /* FirebaseAuth */,
 				D49C0E572C91F12600D529C0 /* FirebaseAuth */,
 				D49C0E5C2C920F9C00D529C0 /* OpenAISwift */,
+				D4FA27782CADC34600F56482 /* FirebaseStorage */,
+				D4FA277A2CADC34600F56482 /* FirebaseStorageCombine-Community */,
 			);
 			productName = GrapefruitCrunch;
 			productReference = D8EDBD342C816EBC00BCCA06 /* GrapefruitCrunch.app */;
@@ -503,6 +509,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D49C0E5B2C920F9C00D529C0 /* XCRemoteSwiftPackageReference "OpenAISwift" */;
 			productName = OpenAISwift;
+		};
+		D4FA27782CADC34600F56482 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseStorage;
+		};
+		D4FA277A2CADC34600F56482 /* FirebaseStorageCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "FirebaseStorageCombine-Community";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
