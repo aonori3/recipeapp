@@ -8,6 +8,8 @@ struct ChangePasswordView: View {
     @State private var alertMessage = ""
     @State private var isSuccessAlert = false
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var colorSchemeManager: ColorSchemeManager
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         NavigationView {
@@ -15,7 +17,7 @@ struct ChangePasswordView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Change Your Password")
                         .font(.system(size: 28, weight: .bold, design: .rounded))
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
                         .padding(.top, 20)
                     
                     Text("Enter and confirm your new password")
