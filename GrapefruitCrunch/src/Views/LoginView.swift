@@ -7,6 +7,7 @@ struct LoginView: View {
     @State private var password = ""
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         NavigationView {
@@ -18,12 +19,12 @@ struct LoginView: View {
                         VStack(alignment: .center, spacing: 20) {
                             Text("Welcome to Recipe Generator")
                                 .font(.system(size: 23, weight: .bold, design: .rounded))
-                                .foregroundColor(.black)
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
                                 .multilineTextAlignment(.center)
                             
                             Text("Please log in to continue")
                                 .font(.system(size: 18, weight: .medium, design: .rounded))
-                                .foregroundColor(.gray)
+                                .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
                         }
                         
@@ -61,7 +62,7 @@ struct LoginView: View {
                         NavigationLink(destination: SignUpView(userIsLoggedIn: $userIsLoggedIn)) {
                             Text("Don't have an account? Sign Up")
                                 .font(.system(size: 16, weight: .medium, design: .rounded))
-                                .foregroundColor(.primaryColor)
+                                .foregroundColor(.adaptivePrimaryColor)
                         }
                         
                         Spacer()
@@ -75,6 +76,8 @@ struct LoginView: View {
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
+        .background(colorScheme == .dark ? Color.black : Color.white)
+        .edgesIgnoringSafeArea(.all)
     }
 
     func login() {
@@ -88,4 +91,3 @@ struct LoginView: View {
         }
     }
 }
-

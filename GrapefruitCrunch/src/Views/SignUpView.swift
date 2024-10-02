@@ -7,6 +7,7 @@ struct SignUpView: View {
     @State private var password = ""
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         GeometryReader { geometry in
@@ -17,12 +18,12 @@ struct SignUpView: View {
                     VStack(alignment: .center, spacing: 20) {
                         Text("Create Your Account")
                             .font(.system(size: 28, weight: .bold, design: .rounded))
-                            .foregroundColor(.black)
+                            .foregroundColor(colorScheme == .dark ? .white : .black)
                             .multilineTextAlignment(.center)
                         
                         Text("Join our cooking community")
                             .font(.system(size: 18, weight: .medium, design: .rounded))
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
                     }
                     
@@ -49,7 +50,7 @@ struct SignUpView: View {
                                 .foregroundColor(.white)
                                 .padding()
                                 .frame(maxWidth: .infinity)
-                                .background(Color.primaryColor)
+                                .background(Color.accentColor)
                                 .cornerRadius(15)
                         }
                     }
@@ -65,7 +66,7 @@ struct SignUpView: View {
             Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
     }
-
+    
     func signUp() {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {

@@ -5,6 +5,7 @@ import FirebaseAuth
 @main
 struct GrapefruitCrunchApp: App {
     @State private var userIsLoggedIn = false
+    @StateObject private var colorSchemeManager = ColorSchemeManager()
 
     init() {
         FirebaseApp.configure()
@@ -12,15 +13,19 @@ struct GrapefruitCrunchApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if userIsLoggedIn {
-                ContentView(userIsLoggedIn: $userIsLoggedIn)
-                    .environmentObject(PastRecipesManager())
-            } else {
-                LoginView(userIsLoggedIn: $userIsLoggedIn)
-                    .onAppear {
-                        checkUserAuthStatus()
-                    }
+            Group {
+                if userIsLoggedIn {
+                    ContentView(userIsLoggedIn: $userIsLoggedIn)
+                        .environmentObject(PastRecipesManager())
+                } else {
+                    LoginView(userIsLoggedIn: $userIsLoggedIn)
+                        .onAppear {
+                            checkUserAuthStatus()
+                        }
+                }
             }
+            .environmentObject(colorSchemeManager)
+            .preferredColorScheme(colorSchemeManager.darkModeEnabled ? .dark : .light)
         }
     }
 
