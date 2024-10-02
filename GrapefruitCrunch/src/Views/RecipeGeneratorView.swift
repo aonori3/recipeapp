@@ -6,6 +6,7 @@ struct RecipeGeneratorView: View {
     @State private var isLoading = true
     @EnvironmentObject var pastRecipesManager: PastRecipesManager
     @State private var showingSavedAlert = false
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {
@@ -17,10 +18,11 @@ struct RecipeGeneratorView: View {
                         Text(extractRecipeTitle(from: recipeText))
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(.primaryColor)
+                            .foregroundColor(.accentColor)
 
                         Text(recipeText)
                             .font(.body)
+                            .foregroundColor(colorScheme == .dark ? .white : .black)
                     }
                     .padding()
                 }
@@ -33,7 +35,7 @@ struct RecipeGeneratorView: View {
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Color.primaryColor)
+                            .background(Color.accentColor)
                             .cornerRadius(20)
                     }
 
@@ -44,7 +46,7 @@ struct RecipeGeneratorView: View {
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Color.primaryColor)
+                            .background(Color.accentColor)
                             .cornerRadius(20)
                     }
                 }

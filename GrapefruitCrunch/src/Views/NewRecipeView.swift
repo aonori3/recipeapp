@@ -1,20 +1,22 @@
-import Foundation
 import SwiftUI
+import Foundation
+import FirebaseAuth
 
 struct NewRecipeView: View {
     @State private var ingredients: [String] = []
     @State private var currentIngredient = ""
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack(spacing: 20) {
             Text("Let's find a recipe for you!")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
-                .foregroundColor(.black)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
                 .padding(.top)
 
             Text("Enter ingredients you already have")
                 .font(.subheadline)
-                .foregroundColor(.gray)
+                .foregroundColor(.secondary)
                 .padding(.bottom, 10)
 
             HStack {
@@ -24,7 +26,7 @@ struct NewRecipeView: View {
                     Text("Add")
                         .padding(.horizontal)
                         .padding(.vertical, 8)
-                        .background(Color.primaryColor)
+                        .background(Color.accentColor)
                         .foregroundColor(.white)
                         .cornerRadius(20)
                 }
@@ -44,7 +46,7 @@ struct NewRecipeView: View {
                     .font(.system(size: 18, weight: .bold, design: .default))
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.primaryColor)
+                    .background(Color.accentColor)
                     .foregroundColor(.white)
                     .cornerRadius(20)
             }

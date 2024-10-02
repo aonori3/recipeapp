@@ -5,11 +5,12 @@ import FirebaseAuth
 struct ProfileView: View {
     @State private var username = "Your Name"
     @State private var email = "Your Email"
-    @State private var darkModeEnabled = false
     @State private var selectedDietaryPreference = "None"
     @State private var showingLogoutAlert = false
     @State private var showingChangePasswordView = false
     @Binding var userIsLoggedIn: Bool
+    @EnvironmentObject var colorSchemeManager: ColorSchemeManager
+    @Environment(\.colorScheme) var colorScheme
     
     let dietaryPreferences = ["None", "Vegetarian", "Vegan", "Gluten-Free", "Keto", "Paleo"]
     
@@ -19,7 +20,7 @@ struct ProfileView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Your Profile")
                         .font(.system(size: 28, weight: .bold, design: .rounded))
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
                         .padding(.top, 20)
                     
                     VStack(alignment: .center) {
@@ -27,7 +28,7 @@ struct ProfileView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 100, height: 100)
-                            .foregroundColor(.primaryColor)
+                            .foregroundColor(.primary)
                         
                         TextField("Username", text: $username)
                             .font(.system(size: 18, weight: .medium, design: .rounded))
@@ -35,11 +36,11 @@ struct ProfileView: View {
                         
                         Text(email)
                             .font(.system(size: 16, weight: .regular, design: .rounded))
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color(.secondarySystemBackground))
+                    .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(15)
                     
                     VStack(alignment: .leading, spacing: 15) {
@@ -53,12 +54,12 @@ struct ProfileView: View {
                         }
                         .pickerStyle(MenuPickerStyle())
                         .padding()
-                        .background(Color(.secondarySystemBackground))
+                        .background(Color(UIColor.secondarySystemBackground))
                         .cornerRadius(10)
                         
-                        Toggle("Dark Mode", isOn: $darkModeEnabled)
+                        Toggle("Dark Mode", isOn: $colorSchemeManager.darkModeEnabled)
                             .padding()
-                            .background(Color(.secondarySystemBackground))
+                            .background(Color(UIColor.secondarySystemBackground))
                             .cornerRadius(10)
                     }
                     
@@ -71,7 +72,7 @@ struct ProfileView: View {
                                 .foregroundColor(.white)
                                 .padding()
                                 .frame(maxWidth: .infinity)
-                                .background(Color.primaryColor)
+                                .background(Color.accentColor)
                                 .cornerRadius(15)
                         }
                         
@@ -83,7 +84,7 @@ struct ProfileView: View {
                                 .foregroundColor(.white)
                                 .padding()
                                 .frame(maxWidth: .infinity)
-                                .background(Color.primaryColor)
+                                .background(Color.accentColor)
                                 .cornerRadius(15)
                         }
                     }
@@ -92,7 +93,7 @@ struct ProfileView: View {
             }
             .navigationBarTitle("", displayMode: .inline)
         }
-        .accentColor(.primaryColor)
+        .accentColor(.accentColor)
         .onAppear {
             loadUserData()
         }
@@ -127,4 +128,3 @@ struct ProfileView: View {
         }
     }
 }
-

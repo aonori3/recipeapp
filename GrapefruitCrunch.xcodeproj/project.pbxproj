@@ -21,6 +21,7 @@
 		D4AB47572C82399D00961AD2 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB47562C82399D00961AD2 /* NavigationBarView.swift */; };
 		D4EC68642C84EF150031EAAB /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC68632C84EF150031EAAB /* ColorExtensions.swift */; };
 		D4FA27612CAB51EE00F56482 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4FA27602CAB51EE00F56482 /* GoogleService-Info.plist */; };
+		D4FA27632CAD9AA700F56482 /* ColorSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA27622CAD9A9F00F56482 /* ColorSchemeManager.swift */; };
 		D8EDBD382C816EBC00BCCA06 /* GrapefruitCrunchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDBD372C816EBC00BCCA06 /* GrapefruitCrunchApp.swift */; };
 		D8EDBD3A2C816EBC00BCCA06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDBD392C816EBC00BCCA06 /* ContentView.swift */; };
 		D8EDBD3C2C816EBF00BCCA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8EDBD3B2C816EBF00BCCA06 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		D4AB47562C82399D00961AD2 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		D4EC68632C84EF150031EAAB /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		D4FA27602CAB51EE00F56482 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D4FA27622CAD9A9F00F56482 /* ColorSchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeManager.swift; sourceTree = "<group>"; };
 		D8EDBD342C816EBC00BCCA06 /* GrapefruitCrunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrapefruitCrunch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8EDBD372C816EBC00BCCA06 /* GrapefruitCrunchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrapefruitCrunchApp.swift; sourceTree = "<group>"; };
 		D8EDBD392C816EBC00BCCA06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		D42031722CAB34AD00A700C2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D4FA27622CAD9A9F00F56482 /* ColorSchemeManager.swift */,
 				D8EDBD4D2C81840200BCCA06 /* RecipeNetworkService.swift */,
 				D8EDBD512C81939700BCCA06 /* PastRecipesManager.swift */,
 				D42031732CAB34FA00A700C2 /* Recipe.swift */,
@@ -240,6 +243,7 @@
 				D8EDBD462C81764700BCCA06 /* HomeView.swift in Sources */,
 				D8EDBD3A2C816EBC00BCCA06 /* ContentView.swift in Sources */,
 				D8EDBD522C81939700BCCA06 /* PastRecipesManager.swift in Sources */,
+				D4FA27632CAD9AA700F56482 /* ColorSchemeManager.swift in Sources */,
 				D49C0E4B2C912A5800D529C0 /* ProfileView.swift in Sources */,
 				D8EDBD4E2C81840200BCCA06 /* RecipeNetworkService.swift in Sources */,
 				D4AB47572C82399D00961AD2 /* NavigationBarView.swift in Sources */,
@@ -385,6 +389,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = K8D7XFC993;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -413,6 +418,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = K8D7XFC993;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
